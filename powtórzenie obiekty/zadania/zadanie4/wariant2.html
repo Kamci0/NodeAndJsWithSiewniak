@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 4 wariant 2</title>
+    <script>
+        class Prostokat{
+            constructor(a,b){
+                this._a=a;
+                this._b=b;
+            }
+
+            obliczObwod(){
+                return(this._a*2 + this._b*2)
+            }
+
+            obliczPole(){
+                return(this._a * this._b);
+            }
+        }
+
+        class Prostopadloscian extends Prostokat{
+            constructor(a,b,c){
+                super(a,b);
+                this._c=c;
+            }
+
+            obliczObjetosc(){
+                return (this._a * this._b * this._c);
+            }
+
+            obliczPoleP(){
+                return ((this._a * this._b + this._a * this._c + this._b * this._c)*2)
+            }
+
+            obliczSumaK(){
+                return (this._a * 4 + this._b * 4 +this._c * 4)
+            }
+        }
+
+        class Blad{
+            constructor(m, i){
+                this.m=m;
+                this.i=i;
+            }
+
+            wypiszM = function (){
+                return (this.m);
+            }
+        }
+    </script>
+</head>
+<body>
+    <label for="a">Podaj a: </label>
+    <input type="number" name="a" id="a">
+    <br>
+    <label for="b">Podaj b: </label>
+    <input type="number" name="b" id="b">
+    <br>
+    <label for="c">Aby wybrać prostopadloscian -> podaj c: </label>
+    <input type="number" name="c" id="c">
+    <br>
+    <button onclick="oblicz()">Oblicz</button>
+
+    <p id="wynik"></p>
+
+    <script>
+        function oblicz(){
+            const a = document.getElementById('a').value;
+            const b = document.getElementById('b').value;
+            const c = document.getElementById('c').value;
+
+            if(c){
+                const b1 = new Blad("", false)
+
+                if(!a){
+                    b1.m ='Nie podano A';
+                    b1.i=true;
+                }
+                if(!b){
+                    b1.m = 'Nie podano B';
+                    b1.i=true;
+                }
+                if(!c){
+                    b1.m = 'Nie podano C';
+                    b1.i=true;
+                }
+                if(isNaN(a)){
+                    b1.m = 'A musi być liczbą';
+                    b1.i=true;
+                }
+                if(isNaN(b)){
+                    b1.m = 'B musi być liczbą';
+                    b1.i=true;
+                }
+                if(isNaN(c)){
+                    b1.m = 'C musi być liczbą';
+                    b1.i=true;
+                }
+                if(a<=0){
+                    b1.m = 'A musi być liczbą dodatnią';
+                    b1.i=true;
+                }
+                if(b<=0){
+                    b1.m = 'B musi być liczbą dodatnią';
+                    b1.i=true;
+                }
+                if(c<=0){
+                    b1.m = 'C musi być liczbą dodatnią';
+                    b1.i=true;
+                }                  
+        
+                if(b1.i){
+                    document.getElementById('wynik').innerHTML = b1.wypiszM();
+                }else{
+                    const p1 = new Prostopadloscian(a,b,c)
+                    document.getElementById('wynik').innerHTML = `Objętośc prostopadlościanu wynosi: ${p1.obliczObjetosc()} pole powierzchni prostopadlościanu wynosi: ${p1.obliczPoleP()} suma krawędzi prostopadlościanu wynosi: ${p1.obliczSumaK()}`;
+                }
+
+            }else{
+                const b1 = new Blad("", false)
+
+                if(!a){
+                    b1.m ='Nie podano A';
+                    b1.i=true;
+                }
+                if(!b){
+                    b1.m = 'Nie podano B';
+                    b1.i=true;
+                }
+                if(isNaN(a)){
+                    b1.m = 'A musi być liczbą';
+                    b1.i=true;
+                }
+                if(isNaN(b)){
+                    b1.m = 'B musi być liczbą';
+                    b1.i=true;
+                }
+                if(a<=0){
+                    b1.m = 'A musi być liczbą dodatnią';
+                    b1.i=true;
+                }
+                if(b<=0){
+                    b1.m = 'B musi być liczbą dodatnią';
+                    b1.i=true;
+                }                 
+        
+                if(b1.i){
+                    document.getElementById('wynik').innerHTML = b1.wypiszM();
+                }else{
+                    const p1 = new Prostokat(a,b)
+                    document.getElementById('wynik').innerHTML = `Obwód prostokąta wynosi: ${p1.obliczObwod()} pole prostokąta wynosi: ${p1.obliczPole()}`;
+                }                
+            }
+
+        }
+    </script>
+</body>
+</html>

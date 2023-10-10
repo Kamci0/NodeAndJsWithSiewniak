@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadanie 6 wariant 2</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+        class Pracownik{
+            constructor(imie, nazwisko){
+                this._imie = imie;
+                this._nazwisko = nazwisko;
+            }
+
+            wypiszDane(){
+                return(`Imie: ${this._imie}, Nazwisko: ${this._nazwisko}`)
+            }
+        }
+
+        class Nauczyciel extends Pracownik{
+            constructor(imie, nazwisko, przedmiot){
+                super(imie, nazwisko);
+                this._przedmiot=przedmiot;
+            }
+
+            wypiszDane(){
+                return(`${super.wypiszDane()}<br>Przedmiot: ${this._przedmiot}`)
+            }
+        }
+
+        class Wychowawca extends Nauczyciel{
+            constructor(imie, nazwisko, przedmiot, klasa){
+                super(imie, nazwisko, przedmiot);
+                this._klasa=klasa;
+            }
+
+            wypiszDane(){
+                return(`${super.wypiszDane()}<br>Klasa: ${this._klasa}`)
+            }
+        }
+
+        class Sekretarka extends Pracownik{
+            constructor(imie, nazwisko, wydzial){
+                super(imie, nazwisko);
+                this._wydzial = wydzial;
+            }
+
+            wypiszDane(){
+                return(`${super.wypiszDane()}<br>Wydzial: ${this._wydzial}`)
+            }
+        }
+
+        const Blad = {
+            t: "Brak błędu",
+            i: false
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <label for="imie">Imie: </label>
+        <input type="text" name="imie" id="imie">
+        <br>
+        <label for="nazwisko">Nazwisko: </label>
+        <input type="text" name="nazwisko" id="nazwisko">
+        <br>
+        <label for="przedmiot">Przedmiot: </label>
+        <input type="text" name="przedmiot" id="przedmiot">
+        <br>
+        <label for="klasa">Klasa: </label>
+        <input type="text" name="klasa" id="klasa">
+        <br>
+        <label for="wydzial">Wydzial: </label>
+        <input type="text" name="wydzial" id="wydzial">
+        <br>
+        <button onclick="dodaj()">Dodaj pracownika</button>
+        <br>
+        <p id="wynik"></p>
+    </div>
+
+    <script>
+        let i = 1;
+        function dodaj(){
+            let imie = document.getElementById('imie').value;
+            let nazwisko = document.getElementById('nazwisko').value;
+            let przedmiot = document.getElementById('przedmiot').value;
+            let klasa = document.getElementById('klasa').value;
+            let wydzial = document.getElementById('wydzial').value;
+
+            let wynik = document.getElementById('wynik');
+
+            let tab = [];         
+            
+            if(!imie && Blad.i==false){
+                Blad.t="Nie podano imienia";
+                Blad.i=true;
+            }
+            if(!nazwisko && Blad.i==false){
+                Blad.t="Nie podano nazwiska";
+                Blad.i=true;
+            }
+            if( !isNaN(imie) && Blad.i==false){
+                Blad.t="Imie nie możę być liczbą";
+                Blad.i=true;
+            }
+            if( !isNaN(nazwisko) && Blad.i==false){
+                Blad.t="Nazwisko nie możę być liczbą";
+                Blad.i=true;
+            }if(!/([A-Z])\w+/.test(imie) && Blad.i==false)  {
+                Blad.t="Imie nie zaczyna się z dużej litery";
+                Blad.i=true;
+            } if(!/([A-Z])\w+/.test(nazwisko) && Blad.i==false)  {
+                Blad.t="Nazwisko nie zaczyna się z dużej litery";
+                Blad.i=true;
+            } 
+
+            if(Blad.i){
+                alert(Blad.t)
+                Blad.i=false;
+            }
+            else{
+                if(wydzial == "" && klasa && przedmiot){
+                    if(!isNaN(przedmiot) && Blad.i==false){
+                        Blad.t="Przedmiot nie możę być liczbą";
+                        Blad.i=true;
+                    }
+                    if(!isNaN(klasa) && Blad.i==false){
+                        Blad.t="Klasa nie możę być liczbą";
+                        Blad.i=true;
+                    }
+                    if(!/[1-9][A-Z]/.test(klasa) && Blad.i==false){
+                        Blad.t="Poprawny format wpisywania klasy to [cyfra][duża litera]";
+                        Blad.i=true;
+                    }
+                    if(Blad.i){
+                        alert(Blad.t)
+                        Blad.i=false;
+                    }else{
+                        const w1 = new Wychowawca(imie, nazwisko, przedmiot, klasa);
+                
+                        tab.push(w1);               
+                    }
+                    
+                }else if(wydzial && klasa =="" && przedmiot ==""){
+                    if(!isNaN(wydzial) && Blad.i==false){
+                        Blad.t="Wydział nie możę być liczbą";
+                        Blad.i=true;
+                    }
+                    if(Blad.i){
+                        alert(Blad.t)
+                        Blad.i=false;
+                    }else{
+                        const s1 = new Sekretarka(imie, nazwisko, wydzial);
+                
+                        tab.push(s1)               
+                    }
+                }else if(wydzial == "" && klasa == "" && przedmiot){
+                    if(!isNaN(przedmiot) && Blad.i==false){
+                        Blad.t="Przedmiot nie możę być liczbą";
+                        Blad.i=true;
+                    }
+                    if(Blad.i){
+                        alert(Blad.t)
+                        Blad.i=false;
+                    }else{
+                        const n1 = new Nauczyciel(imie, nazwisko, przedmiot);
+                
+                        tab.push(n1)                
+                    }
+                }else if(wydzial == "" && klasa =="" && przedmiot ==""){
+                    const p1 = new Pracownik(imie, nazwisko);
+                
+                    tab.push(p1)
+                }
+                tab.forEach(p => {
+                    wynik.innerHTML+=`${i}<br>${p.wypiszDane()}<br>`
+                    i++;
+                });
+                Blad.i=false;
+            }
+        }
+    </script>
+</body>
+</html>

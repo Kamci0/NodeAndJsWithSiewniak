@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 1 wariant 2</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+        class Prostokat{
+            constructor(a,b){
+                this._a=a;
+                this._b=b;
+            }
+
+            obliczObwod = function (){
+                return(this._a*2 + this._b*2)
+            }
+
+            obliczPole = function (){
+                return(this._a * this._b);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <label for="a">Podaj a: </label>
+        <input type="number" name="a" id="a">
+        <br>
+        <label for="b">Podaj b: </label>
+        <input type="number" name="b" id="b">
+        <br>
+        <button onclick="oblicz()">Oblicz pole i obwód</button>
+
+        <p id="wynik"></p>
+    </div>
+    <script>
+        function oblicz(){
+            const a = document.getElementById('a').value;
+            const b = document.getElementById('b').value;
+
+            const p = new Prostokat(a, b)
+
+            document.getElementById('wynik').innerHTML = "Obwód prostokąta wynosi: " + p.obliczObwod() + " pole prostokąta wynosi: " + p.obliczPole();
+        }
+    </script>
+</body>
+</html>

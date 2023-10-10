@@ -1,0 +1,97 @@
+﻿<!--ECMAScript 2015 (ES6): PROGRAMOWANIE OBIEKTOWE
+    Definicja klasy w postaci deklaracji.
+    
+    © Piotr Siewniak, wersja: 30.IX.2019 r.
+-->
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title> ECMAScript 6 - deklaracja klasy. </title>
+    <meta charset="UTF-8">
+</head>
+<body>   
+    <script>
+        /* UWAGA
+            Klasy w JS można definiować w dwojaki sposób:
+                1) przy wykorzystaniu deklaracji klasy (class declaration);
+                2) przy użyciu wyrażenia klasowego (class expression).
+         */
+
+        // Definicja klasy w postaci deklaracji (class declaration):      
+        class Osoba  {  
+            // Definicja konstruktora:
+            constructor(imie, nazwisko) {
+                this._imie = imie;
+                this._nazwisko = nazwisko;
+            }            
+            /* UWAGA
+                Konstruktor stanowi metodę specjalną, która pozwala na utworzenie instancji klasy
+                (tj. obiektu należącego do danej klasy) oraz jego inicjację (tj. inicjację
+                poszczególnych właściwości obiektu).
+
+                W danej klasie może być tylko jeden konstruktor.
+              */
+            
+            /* UWAGA
+                Konstruktor zdefiniowany powyżej ma dwa parametry wejściowe co oznacza,
+                że podczas wywołania tego konstruktora, czyli tworzenia obiektu należącego
+                do klasy Osoba, zainicjowane zostaną właściwości (pola) _imie i _nazwisko.
+              */
+
+            // Definicje metod instancyjnych:
+            daneOsoba() {
+                return `Imię: ${this._imie}, nazwisko: ${this._nazwisko}`;
+            }  
+            /* UWAGA
+                Powyżej wykorzystano definicję łańcucha znaków w postaci literału szablonowego (template literal)
+                wprowadzonego w specyfikacji ES6.
+            */
+
+            daneImie = function() {
+                return this._imie;
+            }
+            daneNazwisko = function() {
+                return this._nazwisko;
+            }
+
+            /* UWAGA
+                Należy zwrócić uwagę na fakt, że właściwości _imie i _nazwisko zostały zdefiniowane
+                w ciele konstruktora.
+
+                W ogólności, wszystkie właściowści instancyjne (instance properties) klasy MUSZĄ być zdefiniowane
+                w ciele metody należącej do tej klasy - najczęściej w ciele konstruktora.
+             */
+        }
+
+        const imie1 = "Piotr";
+        const nazwisko1 = "Siewniak";
+        /* UWAGA
+            W deklaracjach zmiennych powyzej wykorzystano słowo kluczowe let, wprowadzone w ES6.
+            Zmienna zadeklarowana za pomocą słowa kluczowego let ma zasięg blokowy (block scope).
+
+            Ponadto, zmienne typu let umożliwiają redeklarację zmiennej globalnej w bloku kodu
+            włączając w ten mechanizm również pętlę programowe traktowane jako blok kodu.
+
+            Zmienne typu let nie podlegają mechanizmowi podnoszenia deklaracji (hoistingu)
+            na początek skryptu (lub bloku itp).
+          */
+        
+        // Utworzenie obiektu osoba1, jako instancji klasy Osoba:
+        const osoba1 = new Osoba(imie1, nazwisko1);
+        /* UWAGA
+            Powyżej wywołano konstruktor obiektu klasy Osoba z dwoma arumentami.
+            Tym samym, obiekt osoba1 został utworzony, a jego właściwości zainicjowane.
+         */
+
+        // Bezpośrednie odwołanie się do właściwości _imie i _nazwisko obiektu osoba1:
+        console.log("Imię: %s, nazwisko: %s", osoba1._imie, osoba1._nazwisko);
+        
+        // Wywołanie metod instancyjnych należacych do obiektu osoba1:
+        console.log("osoba1.daneOsoba():", osoba1.daneOsoba());
+        console.log("Imię: %s, nazwisko: %s", osoba1.daneImie(), osoba1.daneNazwisko());
+    </script>
+
+    <h1> JavaScript ES6: deklaracja klasy (class declaration) </h1>
+    <h4 style="color: red;"> Przejdź do konsoli przeglądarki (F12) ... </h4>
+</body>
+</html>

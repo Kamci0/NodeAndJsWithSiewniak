@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 2 wariant 2</title>
+    <script>
+        class Prostokat{
+            constructor(a,b){
+                this._a=a;
+                this._b=b;
+            }
+
+            obliczObwod = function (){
+                return(this._a*2 + this._b*2)
+            }
+
+            obliczPole = function (){
+                return(this._a * this._b);
+            }
+        }
+
+        class Blad{
+            constructor(m, i){
+                this.m=m;
+                this.i=i;
+            }
+
+            wypiszM = function (){
+                return (this.m);
+            }
+        }
+    </script>
+</head>
+<body>
+    <label for="a">Podaj a: </label>
+    <input type="text" name="a" id="a">
+    <br>
+    <label for="b">Podaj b: </label>
+    <input type="text" name="b" id="b">
+    <br>
+    <button onclick="oblicz()">Oblicz pole i obwód</button>
+
+    <p id="wynik"></p>
+
+    <script>
+        function oblicz(){
+            const a = document.getElementById('a').value;
+            const b = document.getElementById('b').value;
+
+            // if((a) && ( !isNaN(a)) && (a > 0) && (b) && ( !isNaN(b)) && (b > 0)){
+            //     const p = new Prostokat(a, b)
+
+            //     document.getElementById('wynik').innerHTML = "Obwód prostokąta wynosi: " + p.obliczObwod() + " pole prostokąta wynosi: " + p.obliczPole();           
+            // }else{
+            //     document.getElementById('wynik').innerHTML = "Podano złe dane"
+
+            // }
+
+                const b1 = new Blad("", false)
+
+                if(!a){
+                    b1.m ='Nie podano A';
+                    b1.i=true;
+                }
+                if(!b){
+                    b1.m = 'Nie podano B';
+                    b1.i=true;
+                }
+                if(isNaN(a)){
+                    b1.m = 'A musi być liczbą';
+                    b1.i=true;
+                }
+                if(isNaN(b)){
+                    b1.m = 'B musi być liczbą';
+                    b1.i=true;
+                }
+                if(a<=0){
+                    b1.m = 'A musi być liczbą dodatnią';
+                    b1.i=true;
+                }
+                if(b<=0){
+                    b1.m = 'B musi być liczbą dodatnią';
+                    b1.i=true;
+                }                 
+        
+                if(b1.i){
+                    document.getElementById('wynik').innerHTML = b1.wypiszM();
+                }else{
+                    const p = new Prostokat(a, b)
+
+                    document.getElementById('wynik').innerHTML = "Obwód prostokąta wynosi: " + p.obliczObwod() + " pole prostokąta wynosi: " + p.obliczPole();                      
+                }
+        }
+    </script>
+</body>
+</html>

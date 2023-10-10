@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 1 wariant 1</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+        const prostokat = {};
+
+        prostokat.obliczPole = function (){
+            return(this.a * this.b);
+        }
+
+        prostokat.obliczObwod = function (){
+            return(this.a*2 + this.b*2)
+        }
+    </script>
+</head>
+<body>
+    
+    <div>
+        <label for="a">Podaj a: </label>
+        <input type="number" name="a" id="a">
+        <br>
+        <label for="b">Podaj b: </label>
+        <input type="number" name="b" id="b">
+        <br>
+        <button onclick="oblicz()">Oblicz pole i obwód</button>
+
+        <p id="wynik"></p>
+    </div>
+
+    <script>
+        function oblicz(){
+            prostokat.a = document.getElementById('a').value;
+            prostokat.b = document.getElementById('b').value;
+
+
+            document.getElementById('wynik').innerHTML = "Obwód prostokąta wynosi: " + prostokat.obliczObwod() + " pole prostokąta wynosi: " + prostokat.obliczPole();
+        }
+    </script>
+</body>
+</html>

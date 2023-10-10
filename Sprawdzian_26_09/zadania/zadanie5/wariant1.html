@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadanie 5 wariant 1</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+        function Pracownik(imie, nazwisko){
+            this.imie = imie;
+            this.nazwisko = nazwisko;
+
+            this.wypiszImieINazwisko = function(){
+                return (`Imie: ${this.imie}, Nazwisko: ${this.nazwisko}`);
+            }
+        }
+
+        function Nauczyciel(przedmiot){
+            this.przedmiot = przedmiot;
+
+            this.wypiszPrzedmiot = function(){
+                return (`Przedmiot: ${this.przedmiot}`);
+            }
+        }
+
+        Nauczyciel.prototype = new Pracownik();
+
+        function Wychowawca(klasa){
+            this.klasa = klasa;
+
+            this.wypiszKlase = function(){
+                return (`Klasa: ${this.klasa}`);
+            }
+        }
+
+        Wychowawca.prototype = new Nauczyciel();
+
+        function Sekretarka(wydzial){
+            this.wydzial = wydzial;
+
+            this.wypiszWydzial = function(){
+                return(`Wydział: ${this.wydzial}`)
+            }
+        }
+
+        Sekretarka.prototype = new Pracownik()
+    </script>
+</head>
+<body>
+    <div>
+        <label for="imie">Imie: </label>
+        <input type="text" name="imie" id="imie">
+        <br>
+        <label for="nazwisko">Nazwisko: </label>
+        <input type="text" name="nazwisko" id="nazwisko">
+        <br>
+        <label for="przedmiot">Przedmiot: </label>
+        <input type="text" name="przedmiot" id="przedmiot">
+        <br>
+        <label for="klasa">Klasa: </label>
+        <input type="text" name="klasa" id="klasa">
+        <br>
+        <label for="wydzial">Wydzial: </label>
+        <input type="text" name="wydzial" id="wydzial">
+        <br>
+        <button onclick="dodaj()">Dodaj pracownika</button>
+        <br>
+        <p id="wynik"></p>
+    </div>
+
+    <script>
+        function dodaj(){
+            let imie = document.getElementById('imie').value;
+            let nazwisko = document.getElementById('nazwisko').value;
+            let przedmiot = document.getElementById('przedmiot').value;
+            let klasa = document.getElementById('klasa').value;
+            let wydzial = document.getElementById('wydzial').value;
+
+            let wynik = document.getElementById('wynik');
+
+
+            if(wydzial == "" && klasa && przedmiot){
+                const w1 = new Wychowawca();
+                w1.imie = imie;
+                w1.nazwisko = nazwisko;
+                w1.przedmiot = przedmiot;
+                w1.klasa = klasa;
+
+                wynik.innerHTML += `Wychowawca<br>${w1.wypiszImieINazwisko()}<br>${w1.wypiszPrzedmiot()}<br>${w1.wypiszKlase()}<br>`;
+            }else if(wydzial && klasa =="" && przedmiot ==""){
+                const s1 = new Sekretarka();
+                s1.imie = imie;
+                s1. nazwisko = nazwisko;
+                s1.wydzial = wydzial;
+
+                wynik.innerHTML += `Sekretarka<br>${s1.wypiszImieINazwisko()}<br>${s1.wypiszWydzial()}<br>`;
+
+            }else if(wydzial == "" && klasa == "" && przedmiot){
+                const n1 = new Nauczyciel();
+                n1.imie = imie;
+                n1.nazwisko = nazwisko;
+                n1.przedmiot = przedmiot;
+
+                wynik.innerHTML += `Nauczyciel<br>${n1.wypiszImieINazwisko()}<br>${n1.wypiszPrzedmiot()}<br>`;
+            }else if(wydzial == "" && klasa =="" && przedmiot ==""){
+                const p1 = new Pracownik();
+                p1.imie = imie;
+                p1.nazwisko = nazwisko
+
+                wynik.innerHTML += `Pracownik <br>${p1.wypiszImieINazwisko()}<br>`;
+            }
+        }
+    </script>
+</body>
+</html>
