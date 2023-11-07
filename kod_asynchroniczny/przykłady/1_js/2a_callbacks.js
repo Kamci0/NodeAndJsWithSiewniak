@@ -9,12 +9,13 @@ const n = 3; // liczba iteracji
 
 // Przykład błędnie zaprojektowanego kodu asynchronicznego:
 while (i < n) {
+    console.log(`poza ${i}`);
     setTimeout(
         () => { // funkcja zwrotna (callback)
         // Wyświetlenie bieżącej wartości zmiennej sterującej
-        console.log(i);
+        console.log(`w ${i}`)
     },
-        0 // opóźnienie
+        2000 // opóźnienie
     );
     i++;
 }

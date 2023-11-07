@@ -1,4 +1,4 @@
-/*  NODE.JS PROMISES
+   /*  NODE.JS PROMISES
     Kontrola przepływu sterowania.
     Wykorzystanie promisów zagnieżdżonych.
 

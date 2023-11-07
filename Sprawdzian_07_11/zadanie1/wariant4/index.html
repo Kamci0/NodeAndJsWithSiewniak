@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 1 wariant 4</title>
+    <script src="script.js"></script>
+    <script>
+        
+        function sprawdzDane(a,b,c){         
+            if(!a){
+                console.log("Nie podano a")
+                return false;
+            }else if(!b){
+                console.log("Nie podano b")
+                return false;
+            }else if(!c){
+                console.log("Nie podano c")
+                return false;
+            }else if(isNaN(a)){
+                console.log("A musi być liczbą")
+                return false;
+            }else if(isNaN(b)){
+                console.log("b musi być liczbą")
+                return false;
+            }else if(isNaN(c)){
+                console.log("C musi być liczbą")
+                return false;
+            }else if(a<=0){
+                console.log("A musi większe od 0")
+                return false;
+            }else if(b<=0){
+                console.log("B musi większe od 0")
+                return false;
+            }else if(c<=0){
+                console.log("C musi większe od 0")
+                return false;
+            }else{
+                return true;
+            }
+         }
+
+    </script>
+</head>
+<body>
+
+    <label for="a">Podaj a:</label>
+    <input type="text" id="a" name="a">
+    <br>
+    <label for="b">Podaj b:</label>
+    <input type="text" id="b" name="b">
+    <br>
+    <label for="c">Podaj c:</label>
+    <input type="text" id="c" name="c">
+    <br>
+    <button onclick="wykonaj(sprawdzDane)">Oblicz</button>
+
+    <script>
+        function wykonaj(callback){
+            var a = document.getElementById("a").value;
+            var b = document.getElementById("b").value;
+            var c = document.getElementById("c").value;
+
+            if(callback(a,b,c)){
+                const p1 = new Prostopadloscian(a,b,c);
+
+                p1.wyswietlDane(p1.obliczObjetosc(), p1.obliczPoleP(), p1.obliczSumeK());
+            }
+        }
+    </script>
+
+</body>
+</html>

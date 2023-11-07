@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 1 wariant 3</title>
+    <script src="script.js"></script>
+</head>
+<body>
+
+    <label for="a">Podaj a:</label>
+    <input type="text" id="a" name="a">
+    <br>
+    <label for="b">Podaj b:</label>
+    <input type="text" id="b" name="b">
+    <br>
+    <label for="c">Podaj c:</label>
+    <input type="text" id="c" name="c">
+    <br>
+    <button onclick="wykonaj()">Oblicz</button>
+
+    <script>
+        function wykonaj(){
+            var temp_a = document.getElementById("a").value;
+            var temp_b = document.getElementById("b").value;
+            var temp_c = document.getElementById("c").value;
+
+            var a = 0;
+            var b = 0;
+            var c = 0;
+            
+            const promise = testLiczba(temp_a)
+                .then(
+                    (err)=>{
+                        if(err != undefined){
+                            console.log("Blad w A")
+                            console.log(err)
+                        }
+                    },
+                    (data)=>{
+                        a = data;
+                        //console.log(`Przypisanie a -> ${a}`)
+                        return testLiczba(temp_b);                    
+                    }
+                )
+                .then(
+                    (err)=>{
+                        if(err != undefined){
+                            console.log("Blad w B")
+                            console.log(err)
+                        }
+                    },
+                    (data)=>{
+                        b = data
+                       //console.log(`Przypisanie b -> ${b}`)
+
+                        return testLiczba(temp_c);
+                    }
+                )
+                .then(
+                    (err)=>{
+                        if(err != undefined){
+                            console.log("Blad w C")
+                            console.log(err)
+                        }
+                    },
+                    (data)=>{
+                        c = data;
+                        //console.log(`Przypisanie c -> ${c}`)
+
+                        //console.log(`${a}, ${b}, ${c}`)
+
+                        const p1 = new Prostopadloscian(a,b,c);
+                        
+                        p1.wyswietlDane(p1.obliczObjetosc(), p1.obliczPoleP(), p1.obliczSumeK());
+                    }
+                )
+        }
+    </script>
+</body>
+</html>

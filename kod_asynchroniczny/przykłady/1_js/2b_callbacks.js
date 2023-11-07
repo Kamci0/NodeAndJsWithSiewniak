@@ -9,7 +9,8 @@ function temp(k) {
     setTimeout(
         () => {
             // Wyświetlenie bieżącej wartości zmiennej sterującej
-            console.log(k);
+            console.log(`i w funkcji ${i}`)
+            console.log(`k w funkcji ${k}`);
         },
         0
     );
@@ -20,8 +21,16 @@ const n = 3; // liczba iteracji
 
 // Przykład poprawnie zaprojektowanego kodu asynchronicznego:
 while (i < n) {
+    console.log(`i poza ${i}`)
     // Wywołanie funkcji pomocniczej zdefiniowanej wcześniej:
     temp(i);
+    setTimeout(
+        () => {
+            // Wyświetlenie bieżącej wartości zmiennej sterującej
+            console.log(`i w timeout ${i}`)
+        },
+        0
+    );
     // Inkrementacja zmiennej sterującej pętli:
     i++;
 }
