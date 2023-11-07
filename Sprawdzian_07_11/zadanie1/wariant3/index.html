@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Zadanie 1 wariant 3</title>
+    <link rel="stylesheet" href="../style.css">
     <script src="script.js"></script>
 </head>
 <body>
 
-    <label for="a">Podaj a:</label>
-    <input type="text" id="a" name="a">
-    <br>
-    <label for="b">Podaj b:</label>
-    <input type="text" id="b" name="b">
-    <br>
-    <label for="c">Podaj c:</label>
-    <input type="text" id="c" name="c">
-    <br>
-    <button onclick="wykonaj()">Oblicz</button>
-
+    <div>
+        <label for="a">Podaj a:</label>
+        <input type="text" id="a" name="a">
+        <br>
+        <label for="b">Podaj b:</label>
+        <input type="text" id="b" name="b">
+        <br>
+        <label for="c">Podaj c:</label>
+        <input type="text" id="c" name="c">
+        <br>
+        <button onclick="wykonaj()">Oblicz</button>
+    </div>
+    
     <script>
         function wykonaj(){
             var temp_a = document.getElementById("a").value;

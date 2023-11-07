@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Zadanie 1 wariant 1</title>
+    <link rel="stylesheet" href="../style.css">
     <script src="script.js"></script>
     <script>
         
@@ -42,17 +43,18 @@
     </script>
 </head>
 <body>
-
-    <label for="a">Podaj a:</label>
-    <input type="text" id="a" name="a">
-    <br>
-    <label for="b">Podaj b:</label>
-    <input type="text" id="b" name="b">
-    <br>
-    <label for="c">Podaj c:</label>
-    <input type="text" id="c" name="c">
-    <br>
-    <button onclick="wykonaj(sprawdzDane)">Oblicz</button>
+    <div>
+        <label for="a">Podaj a:</label>
+        <input type="text" id="a" name="a">
+        <br>
+        <label for="b">Podaj b:</label>
+        <input type="text" id="b" name="b">
+        <br>
+        <label for="c">Podaj c:</label>
+        <input type="text" id="c" name="c">
+        <br>
+        <button onclick="wykonaj(sprawdzDane)">Oblicz</button>
+    </div>
 
     <script>
         function wykonaj(callback){

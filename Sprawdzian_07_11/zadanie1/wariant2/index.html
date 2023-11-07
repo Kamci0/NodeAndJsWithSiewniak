@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Zadanie 1 wariant 2</title>
+    <link rel="stylesheet" href="../style.css">
     <script src="script.js"></script>
     <script>
         function dzialania(test_callback, a, b, c){
@@ -10,7 +11,7 @@
             promise
                 .then(([a,b,c])=>{
                     const p1 = new Prostopadloscian(a,b,c);
-                    
+
                     p1.wyswietlDane(p1.obliczObjetosc(), p1.obliczPoleP(), p1.obliczSumeK());
                 })
                 .catch((msg)=>{
@@ -20,18 +21,18 @@
     </script>
 </head>
 <body>
-
-    <label for="a">Podaj a:</label>
-    <input type="text" id="a" name="a">
-    <br>
-    <label for="b">Podaj b:</label>
-    <input type="text" id="b" name="b">
-    <br>
-    <label for="c">Podaj c:</label>
-    <input type="text" id="c" name="c">
-    <br>
-    <button onclick="wykonaj()">Oblicz</button>
-
+    <div>
+        <label for="a">Podaj a:</label>
+        <input type="text" id="a" name="a">
+        <br>
+        <label for="b">Podaj b:</label>
+        <input type="text" id="b" name="b">
+        <br>
+        <label for="c">Podaj c:</label>
+        <input type="text" id="c" name="c">
+        <br>
+        <button onclick="wykonaj()">Oblicz</button>
+    </div>
     <script>
         function wykonaj(){
             var a = document.getElementById("a").value;
